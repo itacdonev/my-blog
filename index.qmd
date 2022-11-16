@@ -1,5 +1,6 @@
 ---
 #title: "Epoch A Day"
+description: Applied ML learning journey
 listing:
   contents: posts         # all docs in the post directory
   sort: "date desc"
