@@ -29,12 +29,12 @@ The notes are written using the [notability](https://notability.com) app. Using 
 
 0. prepare for study
     -  check out the components of the video lecture and the corresponding book chapter
+    - read the questions at the end of the chapter
 1. listen to the video lecture  
     - write notes and questions as they arise
     - pause the video and run the code 
         - write detailed comments in the code for future self
 2. read the corresponding chapter in the book
-    - read the questions at the end of the chapter
     - read the chapter
         - highlight and write notes in the margins
         - mark questions and unclear passages with a small yellow post-it notes
