@@ -1,0 +1,18 @@
+---
+title: "Deep Learning Notes"
+subtitle: "Notes based on the book Deep Learning by Goodfellow, Bengio, and Courville."
+author: "Ita Ćirović Donev"
+date: "2021-10-15"
+categories: [courses, notes]
+image: "ch2.png"
+draft: true
+---
+
+These are visual notes of the book Deep Learning by Goodfello, I., Bengio Y., and Counrville A. Click on the image to open a `*.pdf` file.
+
+::: {layout-ncol=3, layout="[5, -1, 5]"}
+[![CH1 - Introduction](ch1.png)](ch1-Introduction.pdf)
+
+[![CH2 - Linear Algebra](ch2.png)](ch2-Linear Algebra.pdf)
+:::
+

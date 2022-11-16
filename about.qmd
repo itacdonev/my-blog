@@ -1,0 +1,19 @@
+---
+title: "About"
+image: profile-ita.jpg
+about:
+  template: jolla
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/itacdonevFM
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/ita-cirovic-donev-9821379/
+    - icon: github
+      text: Github
+      href: https://github.com/itacdonev
+
+---
+
+Most of my time is spent finding stories in data and developing predictive models using machine learning methods. In my free time, I'm usually in the bookstores browsing for the next exciting adventure read or in some cozy space reading books. I also love to cook; you can check my cooking adventures in my foodieland world.

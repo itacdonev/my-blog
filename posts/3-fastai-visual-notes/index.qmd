@@ -1,0 +1,55 @@
+---
+title: "Fast.ai course notes"
+subtitle: "Visual notes for the fast.ai course on deep learning for coders"
+author: "Ita Ćirović Donev"
+date: "2022-11-16"
+categories: [courses, notes]
+image: "Dolomites-160.jpg"
+draft: false
+---
+
+I feel like I am late to the fast.ai party, but, thinking positively, better be late than never even arrive. Generally, when I learn a new topic or even while reading a non-fiction book, I like to keep written notes as it helps me retain the information much more effortlessly. I think this quote says it all :)
+
+> Come to the book as you would come to an unexplored land. Come without a map. Explore it and draw your own map. - Stephen King
+
+In this blog post, I would like to **share my notes as I go through the course**. 
+
+The notes are written using the [notability](https://notability.com) app. Using digital notebooks enables me to create notes more quickly than with pencil and paper (not to mention the editing possibilities). An even better feature is that I can share them with you.
+
+
+## Visual notes - to be updated
+
+::: {layout-ncol=3, layout="[5, -1, 5]"}
+[![CH1 - Deep Learning Journey](ch1.png)](fastai-ch1.pdf)
+:::
+
+
+## My approach to learning this course
+
+1. listen to the video lecture  
+    - write notes and questions as they arise
+    - pause the video and run the code 
+        - write detailed comments in the code for future self
+2. read the corresponding chapter in the book
+    - read the questions at the end of the chapter
+    - read the chapter
+        - highlight and write notes in the margins
+        - mark questions and unclear passages with a small yellow post-it notes
+            - try to answer the questions by doing further research
+    - update and improve the code from the video lecture if needed.
+    - go through the chapter again focusing on highlighted text and try to connect the information flow
+3. answer the questions at the end of the chapter
+    - if anything is unlcear, go back to the text and try to understand what is the unclear part - research further if still unclear
+4. write visual notes for the chapter(s)
+5. print the written notes and reread them
+6. try to explain to someone else, or your computer ;), what you have learned
+
+When highlighting the text in the book, it helps me to have a structured way of doing this. What I mean by this is that instead of just using one color scheme for anything I think is important, I use 5 different colors (light pastel highlighter not to obscure the text a lot):
+
+- yellow: generally important
+- orange: very important
+- pink/purple: definition/theorem/etc
+- green: code
+- blue: references mentioned which should be read afterwards
+
+This way, when you skim through the text you will, visually, know exactly what's on each page, making things easier to find.

@@ -1,0 +1,25 @@
+---
+#title: "Epoch A Day"
+listing:
+  contents: posts         # all docs in the post directory
+  sort: "date desc"
+  type: grid              # how the listings look, use custom with java script embedded templating (EJS)
+  categories: unnumbered        
+  sort-ui: false
+  filter-ui: false
+  date-format: long
+  fields: 
+      - image
+      - date
+      - categories
+      #- file-modified   # When was the file modified
+      - subtitle
+      - title
+      - author
+      - reading-time
+page-layout: full
+title-block-banner: false
+backgroundcolor: "#FBF9F7"
+---
+
+# Posts

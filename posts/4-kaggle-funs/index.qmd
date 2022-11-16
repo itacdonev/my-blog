@@ -1,0 +1,29 @@
+---
+title: "Working in Kaggle Environment"
+subtitle: "A collection of most useful Kaggle commands."
+author: "Ita Cirovic Donev"
+date: "2022-11-10"
+categories: [python, kaggle]
+title-block-banner: true
+#image: 
+draft: true # Don't include in the listing, site map or site search
+---
+
+# How to download an output
+
+1. commiting a notebook
+2. not commiting a notebook
+
+```{python}
+from pathlib import Path
+```
+
+```{python}
+path_export = Path("../working/")
+```
+
+
+```{python}
+from IPython.display import FileLink
+FileLink(r'my_file_name.pkl')
+```
