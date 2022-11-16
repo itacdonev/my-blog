@@ -32,3 +32,5 @@ format:
       #dark: darkly
     css: styles.css
     highlight-style: arrow-light
+    description-meta: Applied ML learning journey
+    
