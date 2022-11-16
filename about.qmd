@@ -16,4 +16,4 @@ about:
 
 ---
 
-Most of my time is spent finding stories in data and developing predictive models using machine learning methods. In my free time, I'm usually in the bookstores browsing for the next exciting adventure read or in some cozy space reading books. I also love to cook; you can check my cooking adventures in my foodieland world.
+Most of my time is spent finding stories in data and developing predictive models using machine learning methods. In my free time, I'm usually in the bookstores browsing for the next exciting adventure read or in some cozy space reading books. I also love to cook; you can check my cooking adventures in my [foodieland world](https://adventuresinfoodieland.com).

@@ -6,6 +6,7 @@ date: "2021-10-15"
 categories: [courses, notes]
 image: "ch2.png"
 draft: true
+title-block-banner: true
 ---
 
 These are visual notes of the book Deep Learning by Goodfello, I., Bengio Y., and Counrville A. Click on the image to open a `*.pdf` file.

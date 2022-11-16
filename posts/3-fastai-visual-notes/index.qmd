@@ -5,7 +5,8 @@ author: "Ita Ćirović Donev"
 date: "2022-11-16"
 categories: [courses, notes]
 image: "Dolomites-160.jpg"
-draft: false
+title-block-banner: true
+#draft: false
 ---
 
 I feel like I am late to the fast.ai party, but, thinking positively, better be late than never even arrive. Generally, when I learn a new topic or even while reading a non-fiction book, I like to keep written notes as it helps me retain the information much more effortlessly. I think this quote says it all :)

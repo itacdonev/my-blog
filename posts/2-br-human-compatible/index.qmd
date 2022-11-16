@@ -4,6 +4,7 @@ subtitle: "Book Review: Human Compatible by Stuart Russell"
 author: "Ita Cirovic Donev"
 date: "2022-11-10"
 categories: [book review]
+title-block-banner: true
 image: hc-notes.jpg
 ---
 
