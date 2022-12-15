@@ -17,14 +17,6 @@ In this blog post, I would like to **share my notes as I go through the course**
 
 The notes are written using the [notability](https://notability.com) app. Using digital notebooks enables me to create notes more quickly than with pencil and paper (not to mention the editing possibilities). An even better feature is that I can share them with you.
 
-
-## Visual notes - to be updated
-
-::: {layout-ncol=3, layout="[5, -1, 5]"}
-[![CH1 - Deep Learning Journey](ch1.png)](fastai-ch1.pdf)
-:::
-
-
 ## My approach to learning this course
 
 0. prepare for learning
@@ -56,3 +48,20 @@ When highlighting the text in the book, it helps me to have a structured way of 
 - blue: references mentioned which should be read afterwards
 
 This way, when you skim through the text you will, visually, know exactly what's on each page, making things easier to find.
+
+## Visual notes - to be updated
+
+::: {layout-ncol=3, layout="[5, -1, 5]"}
+[![CH1 - Deep Learning Journey](ch1.png)](fastai-ch1.pdf)
+[Flower classification model](lecture_1_model.ipynb)
+:::
+
+## Additional Readings
+
+Collection of papers and other readings as discussed in the book:
+
+### Chapter 1
+
+### Chapter 2
+
+Raji, I & Buolamwini, J. (2019). **[Actionable Auditing: Investigating the Impact of Publicly Naming Biased Performance Results of Commercial AI Products](readings/AIES-19_paper_223.pdf)**. Conference on Artificial Intelligence, Ethics, and Society.
