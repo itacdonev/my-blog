@@ -1,15 +1,11 @@
 {
-  "hash": "784c296c6ab3c393d3513ce83e0f283e",
+  "hash": "342ac71fc7c987868bf53bb0c721cd1b",
   "result": {
-    "markdown": "---\ntitle: \"Working in Kaggle Environment\"\nsubtitle: \"A collection of most useful Kaggle commands.\"\nauthor: \"Ita Cirovic Donev\"\ndate: \"2022-11-10\"\ncategories: [python, kaggle]\ntitle-block-banner: true\n#image: \ndraft: true # Don't include in the listing, site map or site search\n---\n\n# How to download an output\n\n1. commiting a notebook\n2. not commiting a notebook\n\n::: {.cell execution_count=1}\n``` {.python .cell-code}\nfrom pathlib import Path\n```\n:::\n\n\n::: {.cell execution_count=2}\n``` {.python .cell-code}\npath_export = Path(\"../working/\")\n```\n:::\n\n\n::: {.cell execution_count=3}\n``` {.python .cell-code}\nfrom IPython.display import FileLink\nFileLink(r'my_file_name.pkl')\n```\n\n::: {.cell-output .cell-output-display execution_count=3}\n```{=html}\nPath (<tt>my_file_name.pkl</tt>) doesn't exist. It may still be in the process of being generated, or you may have the incorrect path.\n```\n:::\n:::\n\n\n",
+    "markdown": "---\ntitle: \"Python and Machine Learning\"\nsubtitle: \"A collection of most useful commands for doing machine learning using Python\"\nauthor: \"Ita Cirovic Donev\"\ndate: \"2022-11-10\"\ncategories: [python]\ntitle-block-banner: true\n#image: \ndraft: true # Don't include in the listing, site map or site search\n---\n\n# Anaconda environment\nMain steps and functions to define the anaconda environment and use it throughout the project.\n\n**Create new empty environment**\n\n```{bash}\nconda create --name my_environment_name\n```\n\n\n**Create a copy of existing environment**\n\n```{bash}\nconda create -n my_environment_name\n```\n\n\nCopy an environment `conda create -n flowers --clone snowflakes`\n\nDelete the environment `conda remove --name my_env_name --all`\n\nCopy an environment `conda create -n flowers --clone snowflakes`\n\n# Mastering Pandas\n\n**Problem: When we are dealing with time and id variables in the sense that there should be only one occurrence of information per specific time period for a given ID, how can we easily check that this is so in our dataframe.**\n\n**Example: In finance, we usually have client_id and account_id........**\n\n```\n# Define which columns to check\ncols_to_check = [i for i in mydf.columns if i not in cols_to_exclude]\n\n# Initialize a list to store nonunique columns\nnounq_cols = []\n\n# Iterate through cols_to_check\nfor col in cols:\n    if (mydf.groupby(['ID', 'ACC_ID', 'DATE'])\\\n        [col].nunique() != 1).any():\n        nounq_cols.append(col)\n\nprint(f\"Columns which have multiple ACC_IDs: \\n{nounq_cols}\")\n```\n\n",
     "supporting": [
       "index_files"
     ],
     "filters": [],
-    "includes": {
-      "include-in-header": [
-        "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js\" integrity=\"sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==\" crossorigin=\"anonymous\"></script>\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js\" integrity=\"sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==\" crossorigin=\"anonymous\"></script>\n<script type=\"application/javascript\">define('jquery', [],function() {return window.jQuery;})</script>\n"
-      ]
-    }
+    "includes": {}
   }
 }
