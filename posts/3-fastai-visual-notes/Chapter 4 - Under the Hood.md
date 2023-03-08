@@ -502,7 +502,7 @@ To solve this problem a new non-linear layer or the activation function is added
 
 **36.  What’s the difference between F.relu and nn.ReLU?**
 
-There is no difference between `F.relu` and `nn.ReLU`. `F.relu` is a Python function, while `nn.ReLU` belongs to the PyTorch library. Both represent ReLU function.
+Both are from PyTorch, where `nn.ReLU` is a module and `F.relu` function. Note that modules need to be instantiated before usage.
 
 **37.  The universal approximation theorem shows that any function can be approximated as closely as needed using just one nonlinearity. So why do we normally use more?**
 
