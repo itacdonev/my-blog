@@ -1,33 +1,5 @@
 [
   {
-    "objectID": "posts/3-fastai-visual-notes/docs/old.html",
-    "href": "posts/3-fastai-visual-notes/docs/old.html",
-    "title": "Fast.ai course",
-    "section": "",
-    "text": "I feel like I am late to the fast.ai party, but, thinking positively, better be late than never even arrive. Generally, when I learn a new topic or even while reading a non-fiction book, I like to keep written notes as it helps me retain the information much more effortlessly. I think this quote says it all :)\nIn this blog post, I would like to share my notes as I go through the course.\nThe notes are written using the notability app. Using digital notebooks enables me to create notes more quickly than with pencil and paper (not to mention the editing possibilities). An even better feature is that I can share them in my blog."
-  },
-  {
-    "objectID": "posts/3-fastai-visual-notes/docs/old.html#visual-notes---to-be-updated",
-    "href": "posts/3-fastai-visual-notes/docs/old.html#visual-notes---to-be-updated",
-    "title": "Fast.ai course",
-    "section": "Visual notes - to be updated",
-    "text": "Visual notes - to be updated\n\n\n\n\n\nCH1 - Deep Learning Journey\n\n\n\n \n\n\n\n\nCH2 - From Model to Production"
-  },
-  {
-    "objectID": "posts/3-fastai-visual-notes/docs/old.html#my-approach-to-learning-this-course",
-    "href": "posts/3-fastai-visual-notes/docs/old.html#my-approach-to-learning-this-course",
-    "title": "Fast.ai course",
-    "section": "My approach to learning this course",
-    "text": "My approach to learning this course\n\nprepare for learning\n\ncheck out the components of the video lecture and the corresponding book chapter\nread the questions at the end of the chapter\n\nlisten to the video lecture\n\nwrite notes and questions as they arise\npause the video and run the code\n\nwrite detailed comments in the code for future self\n\n\nread the corresponding chapter in the book\n\nread the chapter\n\nhighlight and write notes in the margins\nmark questions and unclear passages with a small yellow post-it notes\n\ntry to answer the questions by doing further research\n\n\nupdate and improve the code from the video lecture if needed.\ngo through the chapter again focusing on highlighted text and try to connect the information flow\n\nanswer the questions at the end of the chapter\n\nif anything is unlcear, go back to the text and try to understand what is the unclear part - research further if still unclear\n\nwrite visual notes for the chapter(s)\nprint the written notes and reread them\ntry to explain to someone else, or your computer ;), what you have learned\n\nWhen highlighting the text in the book, it helps me to have a structured way of doing this. What I mean by this is that instead of just using one color scheme for anything I think is important, I use 5 different colors (light pastel highlighter not to obscure the text a lot):\n\nyellow: generally important\norange: very important\npink/purple: definition/theorem/etc\ngreen: code\nblue: references mentioned which should be read afterwards\n\nThis way, when you skim through the text you will, visually, know exactly what’s on each page, making things easier to find."
-  },
-  {
-    "objectID": "posts/3-fastai-visual-notes/docs/old.html#additional-readings",
-    "href": "posts/3-fastai-visual-notes/docs/old.html#additional-readings",
-    "title": "Fast.ai course",
-    "section": "Additional Readings",
-    "text": "Additional Readings\nCollection of papers and other readings as discussed in the book:\n\nChapter 1\n\n\nChapter 2\nThe Drivetrain Approach: A four-step process for building data products. by Jeremy Howard, Margit Zwemer and Mike Loukides.\nRaji, I & Buolamwini, J. (2019). Actionable Auditing: Investigating the Impact of Publicly Naming Biased Performance Results of Commercial AI Products. Conference on Artificial Intelligence, Ethics, and Society."
-  },
-  {
     "objectID": "posts/3-fastai-visual-notes/index.html",
     "href": "posts/3-fastai-visual-notes/index.html",
     "title": "Fast.ai course",
@@ -74,7 +46,7 @@
     "href": "index.html",
     "title": "Ita Ćirović Donev",
     "section": "",
-    "text": "Fast.ai course\n\n\nVarious notes for the fast.ai course on deep learning for coders\n\n\n0 min\n\n\n\ncourses\n\n\nnotes\n\n\n\n\nIta Ćirović Donev\n\n\nMarch 8, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFast.ai course\n\n\nVarious notes for the fast.ai course on deep learning for coders\n\n\n2 min\n\n\n\ncourses\n\n\nnotes\n\n\n\n\nIta Ćirović Donev\n\n\nNovember 16, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA Greek tragedy in the 20th century\n\n\nBook Review: Losing Earth by Nathaniel Rich\n\n\n2 min\n\n\n\nbook review\n\n\n\n\nIta Cirovic Donev\n\n\nFebruary 15, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA pinch of AI?\n\n\nBook Review: Human Compatible by Stuart Russell\n\n\n3 min\n\n\n\nbook review\n\n\n\n\nIta Cirovic Donev\n\n\nJanuary 11, 2020\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Fast.ai course\n\n\nVarious notes for the fast.ai course on deep learning for coders\n\n\n0 min\n\n\n\ncourses\n\n\nnotes\n\n\n\n\nIta Ćirović Donev\n\n\nMarch 8, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA Greek tragedy in the 20th century\n\n\nBook Review: Losing Earth by Nathaniel Rich\n\n\n2 min\n\n\n\nbook review\n\n\n\n\nIta Cirovic Donev\n\n\nFebruary 15, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA pinch of AI?\n\n\nBook Review: Human Compatible by Stuart Russell\n\n\n3 min\n\n\n\nbook review\n\n\n\n\nIta Cirovic Donev\n\n\nJanuary 11, 2020\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
