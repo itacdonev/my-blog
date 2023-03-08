@@ -586,7 +586,7 @@ y=w*x + b
 <p>As we have seen in chapter 1, we need more than one layer in the neural network to be able to model more complex functions. However, stacking many linear layers and performing multiplication and addition is again a linear layer, which does not help us in solving more complex functions.</p>
 <p>To solve this problem a new non-linear layer or the activation function is added in between the linear layers. Furthermore, this leads to the universal approximation theorem, which basically states that this non-linear layer “…can solve any computable problem to an arbitrarily high level of accuracy”.</p>
 <p><strong>36. What’s the difference between F.relu and nn.ReLU?</strong></p>
-<p>There is no difference between <code>F.relu</code> and <code>nn.ReLU</code>. <code>F.relu</code> is a Python function, while <code>nn.ReLU</code> belongs to the PyTorch library. Both represent ReLU function.</p>
+<p>Both are from PyTorch, where <code>nn.ReLU</code> is a module and <code>F.relu</code> function. Note that modules need to be instantiated before usage.</p>
 <p><strong>37. The universal approximation theorem shows that any function can be approximated as closely as needed using just one nonlinearity. So why do we normally use more?</strong></p>
 <p>To be able to model more complex function we need more linear layers, which in turn requires more non-linear layers. As we build deeper models (with more layers) smaller number of parameters as well as smaller matrices result in better more performance as compared to larger matrices with smaller number of layers and more parameters.</p>
 
