@@ -3,6 +3,7 @@ project:
 
 website:
   title: "Ita Ćirović Donev"
+  reader-mode: true
   navbar:
     #background: "#FBF9F7"
     right:
@@ -28,9 +29,9 @@ format:
   html:
     smooth-scroll: true
     theme: 
-      light: flatly
+      light: spacelab #flatly
       #dark: darkly
     css: styles.css
-    highlight-style: arrow-light
+    highlight-style: github #arrow-light
     description-meta: Applied ML learning journey
     
