@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://itacdonev.github.io/my-blog/posts/3-fastai-visual-notes/index.html</loc>
-    <lastmod>2023-03-09T07:37:59.025Z</lastmod>
-  </url>
-  <url>
     <loc>https://itacdonev.github.io/my-blog/posts/2020-02-15-Losing-Earth/index.html</loc>
-    <lastmod>2023-03-09T07:37:59.450Z</lastmod>
+    <lastmod>2023-03-09T07:44:10.702Z</lastmod>
   </url>
   <url>
     <loc>https://itacdonev.github.io/my-blog/posts/2020-01-11-human-compatible/index.html</loc>
-    <lastmod>2023-03-09T07:38:00.156Z</lastmod>
+    <lastmod>2023-03-09T07:44:11.547Z</lastmod>
+  </url>
+  <url>
+    <loc>https://itacdonev.github.io/my-blog/posts/3-fastai-course-notes/index.html</loc>
+    <lastmod>2023-03-09T07:44:13.364Z</lastmod>
   </url>
   <url>
     <loc>https://itacdonev.github.io/my-blog/index.html</loc>
-    <lastmod>2023-03-09T07:38:01.230Z</lastmod>
+    <lastmod>2023-03-09T07:44:14.243Z</lastmod>
   </url>
   <url>
     <loc>https://itacdonev.github.io/my-blog/about.html</loc>
-    <lastmod>2023-03-09T07:38:01.987Z</lastmod>
+    <lastmod>2023-03-09T07:44:14.960Z</lastmod>
   </url>
   <url>
     <loc>https://itacdonev.github.io/my-blog/notes.html</loc>
-    <lastmod>2023-03-09T07:38:02.290Z</lastmod>
+    <lastmod>2023-03-09T07:44:15.247Z</lastmod>
   </url>
 </urlset>
