@@ -23,4 +23,4 @@ In this blog post, I would like to share my notes as I go through the course. I 
 
 ## Lecture 3
 - Book ref: chapter 4 - Under the Hood: Training a Digital Classifier
-- [Questionnaire solutions](Chapter 4 - Under the Hood.html)
+- [Questionnaire solutions](Chapter 4 - Under the Hood.html) ([pdf](docs/Chapter%204%20-%20Under%20the%20Hood.pdf))
