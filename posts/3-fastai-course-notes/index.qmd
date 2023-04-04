@@ -9,18 +9,32 @@ title-block-banner: true
 draft: false
 ---
 
-In this blog post, I would like to share my notes as I go through the course. I will update this post as I create new material.
+In this blog post, I would like to share my notes as I go through the course. The course is based on the book [Deep Learning for Coders with fastai and PyTorch](https://www.amazon.com/Deep-Learning-Coders-fastai-PyTorch/dp/1492045527). Since the course does not include all the chapters of the book, I organized the notes and resources gathered from this course based on the book layout. I will update this post as I create new material. 
 
+Course information:
 
-## Lecture 1
-- Book ref: chapter 1 - Your Deep Learning Yourney
+- Lectures on [YouTube](https://www.youtube.com/playlist?list=PLfYUBJiXbdtSvpQjSnJJ_PmDQB_VyT5iU)
+- Course [webpage](https://course.fast.ai)
+
+***
+
+## Chapter 1 - Your Deep Learning Journey
+- **Lecture 1 - Getting started [video](https://www.youtube.com/watch?v=8SF_h3xF3cE&list=PLfYUBJiXbdtSvpQjSnJJ_PmDQB_VyT5iU&index=1)**
 - [Visual Notes](fastai-ch1.pdf)
 
-## Lecture 2
-- Book ref: chapter 2 - From Model to Production
+## Chapter 2 - From Model to Production
+- **Lecture 2 - Deployment [video](https://www.youtube.com/watch?v=F4tvM4Vb3A0&list=PLfYUBJiXbdtSvpQjSnJJ_PmDQB_VyT5iU&index=2)**
 - [Visual Notes](fastai-ch2.pdf)
 
+## Chapter 3 - Data Ethics
+**Lecture 9 - Data Ethics**
 
-## Lecture 3
-- Book ref: chapter 4 - Under the Hood: Training a Digital Classifier
-- [Questionnaire solutions](Chapter 4 - Under the Hood.html) ([pdf](docs/Chapter%204%20-%20Under%20the%20Hood.pdf))
+
+## Chapter 4 - Under the Hood: Training a Digit Classifier
+- **Lecture 3 - Neural net foundations [video](https://www.youtube.com/watch?v=hBBOjCiFcuo&list=PLfYUBJiXbdtSvpQjSnJJ_PmDQB_VyT5iU&index=3)**
+- [Questionnaire solutions ch4](Chapter 4 - Under the Hood.html) ([pdf](docs/Chapter%204%20-%20Under%20the%20Hood.pdf))
+
+
+## Chapter 5 - Image Classification
+- [Questionnaire solutions ch5](Chapter 5 - Image Classification.html) ([pdf](docs/Chapter%205%20-%20Image%20Classification.pdf))
+
