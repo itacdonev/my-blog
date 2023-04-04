@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2023-04-03-E-model-pipeline-pytorch/index.html",
       "/posts/3-fastai-course-notes/index.html",
       "/posts/2020-02-15-Losing-Earth/index.html",
       "/posts/2020-01-11-human-compatible/index.html"
