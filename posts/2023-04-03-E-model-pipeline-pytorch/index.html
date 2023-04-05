@@ -2073,176 +2073,178 @@ Total number of parameter: 7850
 <span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="co">    </span></span>
 <span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="co">    Example:</span></span>
 <span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="co">    # Initialize the class with arguments</span></span>
-<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a><span class="co">    tm = TrainModel(model, no_epochs=10, </span></span>
-<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a><span class="co">                    loss_fun=nn.CrossEntropyLoss(), </span></span>
-<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a><span class="co">                    optimizer = torch.optim.SGD(model.parameters(), </span></span>
-<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a><span class="co">                    lr=lr_rate), lr_rate=0.1)</span></span>
-<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a><span class="co">    # Train the model</span></span>
-<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a><span class="co">    model_results = tm.train(dataloader_train, dataloader_valid)</span></span>
-<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, model, dataloader_train, dataloader_valid, </span>
-<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>                 no_epochs, loss_fun, optimizer, lr_rate, </span>
-<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>                 model_path_name:<span class="bu">str</span>, verbose:<span class="bu">bool</span><span class="op">=</span><span class="va">None</span>):</span>
-<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.model <span class="op">=</span> model</span>
-<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.dataloader_train <span class="op">=</span> dataloader_train</span>
-<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.dataloader_valid <span class="op">=</span> dataloader_valid</span>
-<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.no_epochs <span class="op">=</span> no_epochs</span>
-<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.loss_fun <span class="op">=</span> loss_fun</span>
-<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.optimizer <span class="op">=</span> optimizer</span>
-<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lr_rate <span class="op">=</span> lr_rate</span>
-<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.model_path_name <span class="op">=</span> model_path_name</span>
-<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.verbose <span class="op">=</span> verbose</span>
-<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> check_device(<span class="va">self</span>):</span>
-<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a>        device <span class="op">=</span> <span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span></span>
-<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.verbose:</span>
-<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f'Using </span><span class="sc">{</span>device<span class="sc">}</span><span class="ss"> device!'</span>)</span>
-<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> device</span>
-<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> train_epoch(<span class="va">self</span>):</span>
-<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Training step for one epoch</span></span>
-<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a><span class="co">        </span></span>
-<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a><span class="co">        dataloader_train: training dataloader</span></span>
-<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb36-49"><a href="#cb36-49" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb36-50"><a href="#cb36-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get the device for training</span></span>
-<span id="cb36-51"><a href="#cb36-51" aria-hidden="true" tabindex="-1"></a>        device <span class="op">=</span> <span class="va">self</span>.check_device() </span>
-<span id="cb36-52"><a href="#cb36-52" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb36-53"><a href="#cb36-53" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Define where to save training results</span></span>
-<span id="cb36-54"><a href="#cb36-54" aria-hidden="true" tabindex="-1"></a>        loss_train <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb36-55"><a href="#cb36-55" aria-hidden="true" tabindex="-1"></a>        accuracy_train <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb36-56"><a href="#cb36-56" aria-hidden="true" tabindex="-1"></a>        no_correct <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb36-57"><a href="#cb36-57" aria-hidden="true" tabindex="-1"></a>        no_samples <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb36-58"><a href="#cb36-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-59"><a href="#cb36-59" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Initialize training mode</span></span>
-<span id="cb36-60"><a href="#cb36-60" aria-hidden="true" tabindex="-1"></a>        model.train()</span>
-<span id="cb36-61"><a href="#cb36-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-62"><a href="#cb36-62" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Loop through the batches in the dataloader</span></span>
-<span id="cb36-63"><a href="#cb36-63" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> batch, (X,y) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.dataloader_train):</span>
-<span id="cb36-64"><a href="#cb36-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-65"><a href="#cb36-65" aria-hidden="true" tabindex="-1"></a>            <span class="co"># --- FORWARD PASS ---</span></span>
-<span id="cb36-66"><a href="#cb36-66" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Input data sent to device</span></span>
-<span id="cb36-67"><a href="#cb36-67" aria-hidden="true" tabindex="-1"></a>            X, y <span class="op">=</span> X.to(device), y.to(device)</span>
-<span id="cb36-68"><a href="#cb36-68" aria-hidden="true" tabindex="-1"></a>            no_samples <span class="op">+=</span> X.size(<span class="dv">0</span>)</span>
-<span id="cb36-69"><a href="#cb36-69" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb36-70"><a href="#cb36-70" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Model output - probability</span></span>
-<span id="cb36-71"><a href="#cb36-71" aria-hidden="true" tabindex="-1"></a>            outputs <span class="op">=</span> <span class="va">self</span>.model(X)</span>
-<span id="cb36-72"><a href="#cb36-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-73"><a href="#cb36-73" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Model prediction - class</span></span>
-<span id="cb36-74"><a href="#cb36-74" aria-hidden="true" tabindex="-1"></a>            _,preds <span class="op">=</span> torch.<span class="bu">max</span>(outputs.data,<span class="dv">1</span>)</span>
-<span id="cb36-75"><a href="#cb36-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-76"><a href="#cb36-76" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Model loss &amp; accuracy</span></span>
-<span id="cb36-77"><a href="#cb36-77" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> <span class="va">self</span>.loss_fun(outputs, y)</span>
-<span id="cb36-78"><a href="#cb36-78" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Sum of correct predictions</span></span>
-<span id="cb36-79"><a href="#cb36-79" aria-hidden="true" tabindex="-1"></a>            correct_preds <span class="op">=</span> (preds <span class="op">==</span> y).<span class="bu">sum</span>().item()</span>
-<span id="cb36-80"><a href="#cb36-80" aria-hidden="true" tabindex="-1"></a>            no_correct <span class="op">+=</span> correct_preds</span>
-<span id="cb36-81"><a href="#cb36-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-82"><a href="#cb36-82" aria-hidden="true" tabindex="-1"></a>            <span class="co"># --- BACKPROPAGATION ---</span></span>
-<span id="cb36-83"><a href="#cb36-83" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Clear the gradients</span></span>
-<span id="cb36-84"><a href="#cb36-84" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.optimizer.zero_grad()</span>
-<span id="cb36-85"><a href="#cb36-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-86"><a href="#cb36-86" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Compute the gradients</span></span>
-<span id="cb36-87"><a href="#cb36-87" aria-hidden="true" tabindex="-1"></a>            loss.backward()</span>
-<span id="cb36-88"><a href="#cb36-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-89"><a href="#cb36-89" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Update the parameters</span></span>
-<span id="cb36-90"><a href="#cb36-90" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.optimizer.step()</span>
-<span id="cb36-91"><a href="#cb36-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-92"><a href="#cb36-92" aria-hidden="true" tabindex="-1"></a>            <span class="co"># --- SAVE &amp; PRINT RESULTS ---</span></span>
-<span id="cb36-93"><a href="#cb36-93" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Save results of every batch</span></span>
-<span id="cb36-94"><a href="#cb36-94" aria-hidden="true" tabindex="-1"></a>            loss_train <span class="op">+=</span> loss.item()<span class="op">*</span>y.size(<span class="dv">0</span>)</span>
-<span id="cb36-95"><a href="#cb36-95" aria-hidden="true" tabindex="-1"></a>            accuracy_train <span class="op">+=</span> correct_preds</span>
-<span id="cb36-96"><a href="#cb36-96" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb36-97"><a href="#cb36-97" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Average the results</span></span>
-<span id="cb36-98"><a href="#cb36-98" aria-hidden="true" tabindex="-1"></a>        loss_train <span class="op">/=</span> no_samples</span>
-<span id="cb36-99"><a href="#cb36-99" aria-hidden="true" tabindex="-1"></a>        accuracy_train <span class="op">/=</span> no_samples</span>
-<span id="cb36-100"><a href="#cb36-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-101"><a href="#cb36-101" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(colored(<span class="ss">f'TrLoss: </span><span class="sc">{</span>loss_train<span class="sc">}</span><span class="ss">   TrAccuracy:[</span><span class="sc">{</span>no_correct<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>no_samples<span class="sc">}</span><span class="ss">] </span><span class="sc">{</span>accuracy_train<span class="sc">}</span><span class="ss">'</span>, <span class="st">'blue'</span>))</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a><span class="co">    tm = TrainModel(model, </span></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a><span class="co">                    dataloader_train, dataloader_valid,</span></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a><span class="co">                    no_epochs=10, </span></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a><span class="co">                    loss_fun=nn.CrossEntropyLoss(), </span></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a><span class="co">                    optimizer = torch.optim.SGD(model.parameters(), lr=lr_rate), </span></span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a><span class="co">                    lr_rate=0.1)</span></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a><span class="co">    # Train the model </span></span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a><span class="co">    model_results = tm.train()</span></span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, model, dataloader_train, dataloader_valid, </span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>                 no_epochs, loss_fun, optimizer, lr_rate, </span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>                 model_path_name:<span class="bu">str</span>, verbose:<span class="bu">bool</span><span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.model <span class="op">=</span> model</span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.dataloader_train <span class="op">=</span> dataloader_train</span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.dataloader_valid <span class="op">=</span> dataloader_valid</span>
+<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.no_epochs <span class="op">=</span> no_epochs</span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.loss_fun <span class="op">=</span> loss_fun</span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.optimizer <span class="op">=</span> optimizer</span>
+<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lr_rate <span class="op">=</span> lr_rate</span>
+<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.model_path_name <span class="op">=</span> model_path_name</span>
+<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.verbose <span class="op">=</span> verbose</span>
+<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> check_device(<span class="va">self</span>):</span>
+<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a>        device <span class="op">=</span> <span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span></span>
+<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.verbose:</span>
+<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f'Using </span><span class="sc">{</span>device<span class="sc">}</span><span class="ss"> device!'</span>)</span>
+<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> device</span>
+<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> train_epoch(<span class="va">self</span>):</span>
+<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Training step for one epoch</span></span>
+<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a><span class="co">        </span></span>
+<span id="cb36-49"><a href="#cb36-49" aria-hidden="true" tabindex="-1"></a><span class="co">        dataloader_train: training dataloader</span></span>
+<span id="cb36-50"><a href="#cb36-50" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb36-51"><a href="#cb36-51" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb36-52"><a href="#cb36-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get the device for training</span></span>
+<span id="cb36-53"><a href="#cb36-53" aria-hidden="true" tabindex="-1"></a>        device <span class="op">=</span> <span class="va">self</span>.check_device() </span>
+<span id="cb36-54"><a href="#cb36-54" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb36-55"><a href="#cb36-55" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Define where to save training results</span></span>
+<span id="cb36-56"><a href="#cb36-56" aria-hidden="true" tabindex="-1"></a>        loss_train <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb36-57"><a href="#cb36-57" aria-hidden="true" tabindex="-1"></a>        accuracy_train <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb36-58"><a href="#cb36-58" aria-hidden="true" tabindex="-1"></a>        no_correct <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb36-59"><a href="#cb36-59" aria-hidden="true" tabindex="-1"></a>        no_samples <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb36-60"><a href="#cb36-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-61"><a href="#cb36-61" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Initialize training mode</span></span>
+<span id="cb36-62"><a href="#cb36-62" aria-hidden="true" tabindex="-1"></a>        model.train()</span>
+<span id="cb36-63"><a href="#cb36-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-64"><a href="#cb36-64" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Loop through the batches in the dataloader</span></span>
+<span id="cb36-65"><a href="#cb36-65" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> batch, (X,y) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.dataloader_train):</span>
+<span id="cb36-66"><a href="#cb36-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-67"><a href="#cb36-67" aria-hidden="true" tabindex="-1"></a>            <span class="co"># --- FORWARD PASS ---</span></span>
+<span id="cb36-68"><a href="#cb36-68" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Input data sent to device</span></span>
+<span id="cb36-69"><a href="#cb36-69" aria-hidden="true" tabindex="-1"></a>            X, y <span class="op">=</span> X.to(device), y.to(device)</span>
+<span id="cb36-70"><a href="#cb36-70" aria-hidden="true" tabindex="-1"></a>            no_samples <span class="op">+=</span> X.size(<span class="dv">0</span>)</span>
+<span id="cb36-71"><a href="#cb36-71" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb36-72"><a href="#cb36-72" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Model output - probability</span></span>
+<span id="cb36-73"><a href="#cb36-73" aria-hidden="true" tabindex="-1"></a>            outputs <span class="op">=</span> <span class="va">self</span>.model(X)</span>
+<span id="cb36-74"><a href="#cb36-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-75"><a href="#cb36-75" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Model prediction - class</span></span>
+<span id="cb36-76"><a href="#cb36-76" aria-hidden="true" tabindex="-1"></a>            _,preds <span class="op">=</span> torch.<span class="bu">max</span>(outputs.data,<span class="dv">1</span>)</span>
+<span id="cb36-77"><a href="#cb36-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-78"><a href="#cb36-78" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Model loss &amp; accuracy</span></span>
+<span id="cb36-79"><a href="#cb36-79" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> <span class="va">self</span>.loss_fun(outputs, y)</span>
+<span id="cb36-80"><a href="#cb36-80" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Sum of correct predictions</span></span>
+<span id="cb36-81"><a href="#cb36-81" aria-hidden="true" tabindex="-1"></a>            correct_preds <span class="op">=</span> (preds <span class="op">==</span> y).<span class="bu">sum</span>().item()</span>
+<span id="cb36-82"><a href="#cb36-82" aria-hidden="true" tabindex="-1"></a>            no_correct <span class="op">+=</span> correct_preds</span>
+<span id="cb36-83"><a href="#cb36-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-84"><a href="#cb36-84" aria-hidden="true" tabindex="-1"></a>            <span class="co"># --- BACKPROPAGATION ---</span></span>
+<span id="cb36-85"><a href="#cb36-85" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Clear the gradients</span></span>
+<span id="cb36-86"><a href="#cb36-86" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.optimizer.zero_grad()</span>
+<span id="cb36-87"><a href="#cb36-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-88"><a href="#cb36-88" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Compute the gradients</span></span>
+<span id="cb36-89"><a href="#cb36-89" aria-hidden="true" tabindex="-1"></a>            loss.backward()</span>
+<span id="cb36-90"><a href="#cb36-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-91"><a href="#cb36-91" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Update the parameters</span></span>
+<span id="cb36-92"><a href="#cb36-92" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.optimizer.step()</span>
+<span id="cb36-93"><a href="#cb36-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-94"><a href="#cb36-94" aria-hidden="true" tabindex="-1"></a>            <span class="co"># --- SAVE &amp; PRINT RESULTS ---</span></span>
+<span id="cb36-95"><a href="#cb36-95" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Save results of every batch</span></span>
+<span id="cb36-96"><a href="#cb36-96" aria-hidden="true" tabindex="-1"></a>            loss_train <span class="op">+=</span> loss.item()<span class="op">*</span>y.size(<span class="dv">0</span>)</span>
+<span id="cb36-97"><a href="#cb36-97" aria-hidden="true" tabindex="-1"></a>            accuracy_train <span class="op">+=</span> correct_preds</span>
+<span id="cb36-98"><a href="#cb36-98" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb36-99"><a href="#cb36-99" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Average the results</span></span>
+<span id="cb36-100"><a href="#cb36-100" aria-hidden="true" tabindex="-1"></a>        loss_train <span class="op">/=</span> no_samples</span>
+<span id="cb36-101"><a href="#cb36-101" aria-hidden="true" tabindex="-1"></a>        accuracy_train <span class="op">/=</span> no_samples</span>
 <span id="cb36-102"><a href="#cb36-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-103"><a href="#cb36-103" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.model, loss_train, accuracy_train</span>
-<span id="cb36-104"><a href="#cb36-104" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-105"><a href="#cb36-105" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-106"><a href="#cb36-106" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> validate_epoch(<span class="va">self</span>):</span>
-<span id="cb36-107"><a href="#cb36-107" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Validate the trained model for the epoch</span></span>
-<span id="cb36-108"><a href="#cb36-108" aria-hidden="true" tabindex="-1"></a><span class="co">        </span></span>
-<span id="cb36-109"><a href="#cb36-109" aria-hidden="true" tabindex="-1"></a><span class="co">        dataloader_valid: validation dataloader</span></span>
-<span id="cb36-110"><a href="#cb36-110" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
-<span id="cb36-111"><a href="#cb36-111" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb36-112"><a href="#cb36-112" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get the device for training</span></span>
-<span id="cb36-113"><a href="#cb36-113" aria-hidden="true" tabindex="-1"></a>        device <span class="op">=</span> <span class="va">self</span>.check_device()</span>
-<span id="cb36-114"><a href="#cb36-114" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb36-115"><a href="#cb36-115" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Define where to save training results</span></span>
-<span id="cb36-116"><a href="#cb36-116" aria-hidden="true" tabindex="-1"></a>        loss_valid <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb36-117"><a href="#cb36-117" aria-hidden="true" tabindex="-1"></a>        accuracy_valid <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb36-118"><a href="#cb36-118" aria-hidden="true" tabindex="-1"></a>        no_samples <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb36-119"><a href="#cb36-119" aria-hidden="true" tabindex="-1"></a>        no_correct <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb36-120"><a href="#cb36-120" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb36-121"><a href="#cb36-121" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Set the evaluation mode</span></span>
-<span id="cb36-122"><a href="#cb36-122" aria-hidden="true" tabindex="-1"></a>        model.<span class="bu">eval</span>()</span>
-<span id="cb36-123"><a href="#cb36-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-124"><a href="#cb36-124" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> torch.no_grad():</span>
-<span id="cb36-125"><a href="#cb36-125" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> batch, (Xv,yv) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.dataloader_valid):                </span>
-<span id="cb36-126"><a href="#cb36-126" aria-hidden="true" tabindex="-1"></a>                </span>
-<span id="cb36-127"><a href="#cb36-127" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Input data sent to device</span></span>
-<span id="cb36-128"><a href="#cb36-128" aria-hidden="true" tabindex="-1"></a>                Xv, yv <span class="op">=</span> Xv.to(device), yv.to(device)</span>
-<span id="cb36-129"><a href="#cb36-129" aria-hidden="true" tabindex="-1"></a>                no_samples <span class="op">+=</span> Xv.size(<span class="dv">0</span>)</span>
-<span id="cb36-130"><a href="#cb36-130" aria-hidden="true" tabindex="-1"></a>                </span>
-<span id="cb36-131"><a href="#cb36-131" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Model output - probability</span></span>
-<span id="cb36-132"><a href="#cb36-132" aria-hidden="true" tabindex="-1"></a>                outputs <span class="op">=</span> <span class="va">self</span>.model(Xv)</span>
-<span id="cb36-133"><a href="#cb36-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-134"><a href="#cb36-134" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Model prediction - class</span></span>
-<span id="cb36-135"><a href="#cb36-135" aria-hidden="true" tabindex="-1"></a>                _,preds <span class="op">=</span> torch.<span class="bu">max</span>(outputs.data,<span class="dv">1</span>)</span>
-<span id="cb36-136"><a href="#cb36-136" aria-hidden="true" tabindex="-1"></a>                </span>
-<span id="cb36-137"><a href="#cb36-137" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Model loss &amp; accuracy</span></span>
-<span id="cb36-138"><a href="#cb36-138" aria-hidden="true" tabindex="-1"></a>                loss <span class="op">=</span> <span class="va">self</span>.loss_fun(outputs, yv)</span>
-<span id="cb36-139"><a href="#cb36-139" aria-hidden="true" tabindex="-1"></a>                correct_preds <span class="op">=</span> (preds <span class="op">==</span> yv).<span class="bu">sum</span>().item()</span>
-<span id="cb36-140"><a href="#cb36-140" aria-hidden="true" tabindex="-1"></a>                no_correct <span class="op">+=</span> correct_preds</span>
-<span id="cb36-141"><a href="#cb36-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-142"><a href="#cb36-142" aria-hidden="true" tabindex="-1"></a>                <span class="co"># --- SAVE &amp; PRINT RESULTS ---</span></span>
-<span id="cb36-143"><a href="#cb36-143" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Save results of every batch</span></span>
-<span id="cb36-144"><a href="#cb36-144" aria-hidden="true" tabindex="-1"></a>                loss_valid <span class="op">+=</span> loss.item()<span class="op">*</span>y.size(<span class="dv">0</span>)</span>
-<span id="cb36-145"><a href="#cb36-145" aria-hidden="true" tabindex="-1"></a>                accuracy_valid <span class="op">+=</span> correct_preds</span>
-<span id="cb36-146"><a href="#cb36-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-147"><a href="#cb36-147" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Average the results</span></span>
-<span id="cb36-148"><a href="#cb36-148" aria-hidden="true" tabindex="-1"></a>            loss_valid <span class="op">/=</span> no_samples</span>
-<span id="cb36-149"><a href="#cb36-149" aria-hidden="true" tabindex="-1"></a>            accuracy_valid <span class="op">/=</span> no_samples</span>
-<span id="cb36-150"><a href="#cb36-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-151"><a href="#cb36-151" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(colored(<span class="ss">f'VlLoss: </span><span class="sc">{</span>loss_valid<span class="sc">}</span><span class="ss">   VlAccuracy:[</span><span class="sc">{</span>no_correct<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>no_samples<span class="sc">}</span><span class="ss">] </span><span class="sc">{</span>accuracy_valid<span class="sc">}</span><span class="ss">'</span>,<span class="st">'red'</span>))</span>
-<span id="cb36-152"><a href="#cb36-152" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb36-153"><a href="#cb36-153" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> loss_valid, accuracy_valid</span>
-<span id="cb36-154"><a href="#cb36-154" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-155"><a href="#cb36-155" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb36-156"><a href="#cb36-156" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> train(<span class="va">self</span>):</span>
-<span id="cb36-157"><a href="#cb36-157" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Training the model for N epochs"""</span></span>
-<span id="cb36-158"><a href="#cb36-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-159"><a href="#cb36-159" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Initialize for results</span></span>
-<span id="cb36-160"><a href="#cb36-160" aria-hidden="true" tabindex="-1"></a>        loss_train_epoch <span class="op">=</span> [<span class="dv">0</span>]<span class="op">*</span><span class="va">self</span>.no_epochs</span>
-<span id="cb36-161"><a href="#cb36-161" aria-hidden="true" tabindex="-1"></a>        accuracy_train_epoch <span class="op">=</span> [<span class="dv">0</span>]<span class="op">*</span><span class="va">self</span>.no_epochs</span>
-<span id="cb36-162"><a href="#cb36-162" aria-hidden="true" tabindex="-1"></a>        loss_valid_epoch <span class="op">=</span> [<span class="dv">0</span>]<span class="op">*</span><span class="va">self</span>.no_epochs</span>
-<span id="cb36-163"><a href="#cb36-163" aria-hidden="true" tabindex="-1"></a>        accuracy_valid_epoch <span class="op">=</span> [<span class="dv">0</span>]<span class="op">*</span><span class="va">self</span>.no_epochs</span>
-<span id="cb36-164"><a href="#cb36-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-165"><a href="#cb36-165" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.no_epochs):</span>
-<span id="cb36-166"><a href="#cb36-166" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f'EPOCH: </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb36-167"><a href="#cb36-167" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">'.'</span><span class="op">*</span><span class="dv">75</span>)</span>
-<span id="cb36-168"><a href="#cb36-168" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb36-169"><a href="#cb36-169" aria-hidden="true" tabindex="-1"></a>            model, loss_train, accuracy_train <span class="op">=</span> <span class="va">self</span>.train_epoch()</span>
-<span id="cb36-170"><a href="#cb36-170" aria-hidden="true" tabindex="-1"></a>            loss_valid, accuracy_valid <span class="op">=</span> <span class="va">self</span>.validate_epoch()</span>
-<span id="cb36-171"><a href="#cb36-171" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb36-172"><a href="#cb36-172" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Save results</span></span>
-<span id="cb36-173"><a href="#cb36-173" aria-hidden="true" tabindex="-1"></a>            loss_train_epoch[epoch] <span class="op">=</span> loss_train</span>
-<span id="cb36-174"><a href="#cb36-174" aria-hidden="true" tabindex="-1"></a>            accuracy_train_epoch[epoch] <span class="op">=</span> accuracy_train</span>
-<span id="cb36-175"><a href="#cb36-175" aria-hidden="true" tabindex="-1"></a>            loss_valid_epoch[epoch] <span class="op">=</span> loss_valid</span>
-<span id="cb36-176"><a href="#cb36-176" aria-hidden="true" tabindex="-1"></a>            accuracy_valid_epoch[epoch] <span class="op">=</span> accuracy_valid</span>
-<span id="cb36-177"><a href="#cb36-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-178"><a href="#cb36-178" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">'-'</span><span class="op">*</span><span class="dv">75</span>)</span>
-<span id="cb36-179"><a href="#cb36-179" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb36-180"><a href="#cb36-180" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Save model results</span></span>
-<span id="cb36-181"><a href="#cb36-181" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.model_path_name:</span>
-<span id="cb36-182"><a href="#cb36-182" aria-hidden="true" tabindex="-1"></a>            torch.save(model, <span class="va">self</span>.model_path_name)</span>
-<span id="cb36-183"><a href="#cb36-183" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(colored(<span class="ss">f'Model saved in </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>model_path_name<span class="sc">}</span><span class="ss">'</span>,<span class="st">'blue'</span>))</span>
-<span id="cb36-184"><a href="#cb36-184" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb36-185"><a href="#cb36-185" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> loss_train_epoch, loss_valid_epoch, accuracy_train_epoch, accuracy_valid_epoch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-103"><a href="#cb36-103" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(colored(<span class="ss">f'TrLoss: </span><span class="sc">{</span>loss_train<span class="sc">}</span><span class="ss">   TrAccuracy:[</span><span class="sc">{</span>no_correct<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>no_samples<span class="sc">}</span><span class="ss">] </span><span class="sc">{</span>accuracy_train<span class="sc">}</span><span class="ss">'</span>, <span class="st">'blue'</span>))</span>
+<span id="cb36-104"><a href="#cb36-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-105"><a href="#cb36-105" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.model, loss_train, accuracy_train</span>
+<span id="cb36-106"><a href="#cb36-106" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-107"><a href="#cb36-107" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-108"><a href="#cb36-108" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> validate_epoch(<span class="va">self</span>):</span>
+<span id="cb36-109"><a href="#cb36-109" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Validate the trained model for the epoch</span></span>
+<span id="cb36-110"><a href="#cb36-110" aria-hidden="true" tabindex="-1"></a><span class="co">        </span></span>
+<span id="cb36-111"><a href="#cb36-111" aria-hidden="true" tabindex="-1"></a><span class="co">        dataloader_valid: validation dataloader</span></span>
+<span id="cb36-112"><a href="#cb36-112" aria-hidden="true" tabindex="-1"></a><span class="co">        """</span></span>
+<span id="cb36-113"><a href="#cb36-113" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb36-114"><a href="#cb36-114" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get the device for training</span></span>
+<span id="cb36-115"><a href="#cb36-115" aria-hidden="true" tabindex="-1"></a>        device <span class="op">=</span> <span class="va">self</span>.check_device()</span>
+<span id="cb36-116"><a href="#cb36-116" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb36-117"><a href="#cb36-117" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Define where to save training results</span></span>
+<span id="cb36-118"><a href="#cb36-118" aria-hidden="true" tabindex="-1"></a>        loss_valid <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb36-119"><a href="#cb36-119" aria-hidden="true" tabindex="-1"></a>        accuracy_valid <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb36-120"><a href="#cb36-120" aria-hidden="true" tabindex="-1"></a>        no_samples <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb36-121"><a href="#cb36-121" aria-hidden="true" tabindex="-1"></a>        no_correct <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb36-122"><a href="#cb36-122" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb36-123"><a href="#cb36-123" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Set the evaluation mode</span></span>
+<span id="cb36-124"><a href="#cb36-124" aria-hidden="true" tabindex="-1"></a>        model.<span class="bu">eval</span>()</span>
+<span id="cb36-125"><a href="#cb36-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-126"><a href="#cb36-126" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb36-127"><a href="#cb36-127" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> batch, (Xv,yv) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.dataloader_valid):                </span>
+<span id="cb36-128"><a href="#cb36-128" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb36-129"><a href="#cb36-129" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Input data sent to device</span></span>
+<span id="cb36-130"><a href="#cb36-130" aria-hidden="true" tabindex="-1"></a>                Xv, yv <span class="op">=</span> Xv.to(device), yv.to(device)</span>
+<span id="cb36-131"><a href="#cb36-131" aria-hidden="true" tabindex="-1"></a>                no_samples <span class="op">+=</span> Xv.size(<span class="dv">0</span>)</span>
+<span id="cb36-132"><a href="#cb36-132" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb36-133"><a href="#cb36-133" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Model output - probability</span></span>
+<span id="cb36-134"><a href="#cb36-134" aria-hidden="true" tabindex="-1"></a>                outputs <span class="op">=</span> <span class="va">self</span>.model(Xv)</span>
+<span id="cb36-135"><a href="#cb36-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-136"><a href="#cb36-136" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Model prediction - class</span></span>
+<span id="cb36-137"><a href="#cb36-137" aria-hidden="true" tabindex="-1"></a>                _,preds <span class="op">=</span> torch.<span class="bu">max</span>(outputs.data,<span class="dv">1</span>)</span>
+<span id="cb36-138"><a href="#cb36-138" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb36-139"><a href="#cb36-139" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Model loss &amp; accuracy</span></span>
+<span id="cb36-140"><a href="#cb36-140" aria-hidden="true" tabindex="-1"></a>                loss <span class="op">=</span> <span class="va">self</span>.loss_fun(outputs, yv)</span>
+<span id="cb36-141"><a href="#cb36-141" aria-hidden="true" tabindex="-1"></a>                correct_preds <span class="op">=</span> (preds <span class="op">==</span> yv).<span class="bu">sum</span>().item()</span>
+<span id="cb36-142"><a href="#cb36-142" aria-hidden="true" tabindex="-1"></a>                no_correct <span class="op">+=</span> correct_preds</span>
+<span id="cb36-143"><a href="#cb36-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-144"><a href="#cb36-144" aria-hidden="true" tabindex="-1"></a>                <span class="co"># --- SAVE &amp; PRINT RESULTS ---</span></span>
+<span id="cb36-145"><a href="#cb36-145" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Save results of every batch</span></span>
+<span id="cb36-146"><a href="#cb36-146" aria-hidden="true" tabindex="-1"></a>                loss_valid <span class="op">+=</span> loss.item()<span class="op">*</span>y.size(<span class="dv">0</span>)</span>
+<span id="cb36-147"><a href="#cb36-147" aria-hidden="true" tabindex="-1"></a>                accuracy_valid <span class="op">+=</span> correct_preds</span>
+<span id="cb36-148"><a href="#cb36-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-149"><a href="#cb36-149" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Average the results</span></span>
+<span id="cb36-150"><a href="#cb36-150" aria-hidden="true" tabindex="-1"></a>            loss_valid <span class="op">/=</span> no_samples</span>
+<span id="cb36-151"><a href="#cb36-151" aria-hidden="true" tabindex="-1"></a>            accuracy_valid <span class="op">/=</span> no_samples</span>
+<span id="cb36-152"><a href="#cb36-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-153"><a href="#cb36-153" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(colored(<span class="ss">f'VlLoss: </span><span class="sc">{</span>loss_valid<span class="sc">}</span><span class="ss">   VlAccuracy:[</span><span class="sc">{</span>no_correct<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>no_samples<span class="sc">}</span><span class="ss">] </span><span class="sc">{</span>accuracy_valid<span class="sc">}</span><span class="ss">'</span>,<span class="st">'red'</span>))</span>
+<span id="cb36-154"><a href="#cb36-154" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb36-155"><a href="#cb36-155" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> loss_valid, accuracy_valid</span>
+<span id="cb36-156"><a href="#cb36-156" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-157"><a href="#cb36-157" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-158"><a href="#cb36-158" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> train(<span class="va">self</span>):</span>
+<span id="cb36-159"><a href="#cb36-159" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""Training the model for N epochs"""</span></span>
+<span id="cb36-160"><a href="#cb36-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-161"><a href="#cb36-161" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Initialize for results</span></span>
+<span id="cb36-162"><a href="#cb36-162" aria-hidden="true" tabindex="-1"></a>        loss_train_epoch <span class="op">=</span> [<span class="dv">0</span>]<span class="op">*</span><span class="va">self</span>.no_epochs</span>
+<span id="cb36-163"><a href="#cb36-163" aria-hidden="true" tabindex="-1"></a>        accuracy_train_epoch <span class="op">=</span> [<span class="dv">0</span>]<span class="op">*</span><span class="va">self</span>.no_epochs</span>
+<span id="cb36-164"><a href="#cb36-164" aria-hidden="true" tabindex="-1"></a>        loss_valid_epoch <span class="op">=</span> [<span class="dv">0</span>]<span class="op">*</span><span class="va">self</span>.no_epochs</span>
+<span id="cb36-165"><a href="#cb36-165" aria-hidden="true" tabindex="-1"></a>        accuracy_valid_epoch <span class="op">=</span> [<span class="dv">0</span>]<span class="op">*</span><span class="va">self</span>.no_epochs</span>
+<span id="cb36-166"><a href="#cb36-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-167"><a href="#cb36-167" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.no_epochs):</span>
+<span id="cb36-168"><a href="#cb36-168" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f'EPOCH: </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb36-169"><a href="#cb36-169" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">'.'</span><span class="op">*</span><span class="dv">75</span>)</span>
+<span id="cb36-170"><a href="#cb36-170" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb36-171"><a href="#cb36-171" aria-hidden="true" tabindex="-1"></a>            model, loss_train, accuracy_train <span class="op">=</span> <span class="va">self</span>.train_epoch()</span>
+<span id="cb36-172"><a href="#cb36-172" aria-hidden="true" tabindex="-1"></a>            loss_valid, accuracy_valid <span class="op">=</span> <span class="va">self</span>.validate_epoch()</span>
+<span id="cb36-173"><a href="#cb36-173" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb36-174"><a href="#cb36-174" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Save results</span></span>
+<span id="cb36-175"><a href="#cb36-175" aria-hidden="true" tabindex="-1"></a>            loss_train_epoch[epoch] <span class="op">=</span> loss_train</span>
+<span id="cb36-176"><a href="#cb36-176" aria-hidden="true" tabindex="-1"></a>            accuracy_train_epoch[epoch] <span class="op">=</span> accuracy_train</span>
+<span id="cb36-177"><a href="#cb36-177" aria-hidden="true" tabindex="-1"></a>            loss_valid_epoch[epoch] <span class="op">=</span> loss_valid</span>
+<span id="cb36-178"><a href="#cb36-178" aria-hidden="true" tabindex="-1"></a>            accuracy_valid_epoch[epoch] <span class="op">=</span> accuracy_valid</span>
+<span id="cb36-179"><a href="#cb36-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-180"><a href="#cb36-180" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">'-'</span><span class="op">*</span><span class="dv">75</span>)</span>
+<span id="cb36-181"><a href="#cb36-181" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb36-182"><a href="#cb36-182" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Save model results</span></span>
+<span id="cb36-183"><a href="#cb36-183" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.model_path_name:</span>
+<span id="cb36-184"><a href="#cb36-184" aria-hidden="true" tabindex="-1"></a>            torch.save(model, <span class="va">self</span>.model_path_name)</span>
+<span id="cb36-185"><a href="#cb36-185" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(colored(<span class="ss">f'Model saved in </span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>model_path_name<span class="sc">}</span><span class="ss">'</span>,<span class="st">'blue'</span>))</span>
+<span id="cb36-186"><a href="#cb36-186" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb36-187"><a href="#cb36-187" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> loss_train_epoch, loss_valid_epoch, accuracy_train_epoch, accuracy_valid_epoch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s quickly explain how we have defined class <code>TrainModel</code>. The class <code>TrainModel</code> is composed of three methods: <code>train_epoch</code>, <code>validate_epoch</code> and <code>train</code>, where <code>train_epoch</code> and <code>validate_epoch</code> provide the training and validation for one epoch, while the <code>train</code> method encompases both to provide the complete modeling pipeline for a specified number of epochs.</p>
 <p>Using <code>__init__()</code> we define all the arguments for the class.</p>
