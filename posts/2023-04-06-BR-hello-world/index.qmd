@@ -1,0 +1,30 @@
+---
+title: "Unpacking the Implications of Algorithms on Human Life"
+subtitle: "Book Review: Hello World by Hannah Fry"
+author: "Ita Cirovic Donev"
+date: "2023-04-06"
+categories: [book review]
+title-block-banner: true
+image: hello_world_banner.png
+---
+
+Buckle up for an engaging and, at times, unnerving journey as Hannah Fry takes you on a multidisciplinary exploration of how machines and algorithms affect our lives. Be prepared to be amazed and shocked simultaneously as the author presents lucid examples of the applications of algorithms in sensitive areas such as power, data, justice, medicine, cars, crime, and art. 
+
+Summarizing each chapter very briefly: 
+
+- **Power** - our ability to trust ourselves, the machine and to over-rule it at times
+- **Data** - how much is *our personal* data worth in the open world system; without precise means to regulate it or even knowing how it is processed
+- **Justice** - no one is perfect, neither the judge nor the algorithm, but they impact our lives significantly, at times, in a biased way feeding even more bias to the initial conditions of both the judge and the algorithm.
+- **Medicine** - the impact of algorithms that can *read* images
+- **Cars** - it turns out it is not that easy to drive a car, let alone make the machine do it, due to numerous obstacles that can occur on and off-road
+- **Art** - it's hard to predict the success of a movie; is it art if the machine draws it?
+
+The book does not delve into the mathematical and technical complexities of algorithms. Instead, it focuses only on their implications in real life. The very basics of the types of algorithms are presented, with the more specific machine learning or deep learning mentioned within specific examples and areas. The book focuses more on the human ability or better inability to create algorithms without bias and ethical concerns in mind, finally adequately placing them as active contributors to human society. The author presents numerous vivid examples, at times dire to humans, of how humans have failed to design the process of machine involvement in human life properly. 
+
+The writing style is engaging and lucid, with "down to Earth" sentences leaving the technical jargon on the library shelf. Due to the style, you will probably read the book in several days (even with note-taking). Furthermore, the language of the writer connects with the reader.
+
+The only aspect I would love to see more of is some potential proposal ideas of how to fix these numerous issues we have. But, overall, I think the author does a great job of reaching a very wide audience to raise awareness of the ethical considerations we face.
+
+### References
+
+Fry, H. (2018). Hello World: How to be Human in the Age of the Machine. Penguin Random House, UK.
