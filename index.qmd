@@ -1,23 +1,24 @@
 ---
 #title: "Epoch A Day"
 description: Applied ML learning journey
+toc: true
 listing:
   contents: posts         # all docs in the post directory
   sort: "date desc"
   type: grid              # how the listings look, use custom with java script embedded templating (EJS)
-  categories: unnumbered        
+  #categories: unnumbered        
   sort-ui: false
   filter-ui: false
   date-format: long
   fields: 
-      - image
       - date
+      - image 
       - categories
       #- file-modified   # When was the file modified
       - subtitle
       - title
-      - author
-      - reading-time
+      #- author
+      #- reading-time
 page-layout: full
 title-block-banner: false
 backgroundcolor: "#FBF9F7"

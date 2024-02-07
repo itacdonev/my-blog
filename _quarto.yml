@@ -4,7 +4,11 @@ project:
 website:
   title: "Ita Ćirović Donev"
   reader-mode: true
+  open-graph: true
+  page-navigation: true
+  back-to-top-navigation: true
   navbar:
+    pinned: true
     #background: "#FBF9F7"
     right:
       - about.qmd
@@ -14,6 +18,12 @@ website:
         href: https://twitter.com/itacdonevFM
       - icon: linkedin
         href: https://www.linkedin.com/in/ita-cirovic-donev-9821379/
+  # sidebar:
+  #     title: Posts
+  #     pinned: true
+  #     collapse-level: 1
+  #     style: docked
+  #     contents: posts/**
   page-footer: 
     left: "Copyright 2022, Ita Ćirović Donev"
     right:
@@ -32,6 +42,7 @@ format:
       light: spacelab #flatly
       #dark: darkly
     css: styles.css
-    highlight-style: github #arrow-light
+    highlight-style: breeze #arrow-light
     description-meta: Applied ML learning journey
-    
+    toc: true
+    toc-title: "Contents"
