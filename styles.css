@@ -1,1 +1,13 @@
 /* css styles */
+
+.card-title {
+    font-weight: normal;
+}
+
+.card-subtitle {
+    color: rgb(147, 145, 142);
+    font-weight: lighter;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
