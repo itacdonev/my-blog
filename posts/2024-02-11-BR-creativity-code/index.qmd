@@ -1,0 +1,23 @@
+---
+title: "The AI Muse: Navigating the Complexities of Creativity in the Digital Age"
+subtitle: "Book Review: The Creativity Code by Marcus du Sautoy"
+author: "Ita Cirovic Donev"
+date: "2024-02-11"
+categories: [book review]
+title-block-banner: true
+image: DALL-E-Creativity-Code1.png
+sidebar: false
+---
+
+*The Creativity Code* is an engaging, lively, and a compelling exploration of the intersection of human creativity and artificial intelligence (AI). The book is focused on several fields balancing philosophical and ethical implications of AI in the creative domain. 
+
+One disruption that made headlines instantly was a defeat of a world champion by a computer in the game of Go, a popular strategy game once thought to be beyond the realm of computerization. Quite a lot of time is dedicated to discussions on what is creativity in art, what makes it valuable and how social acceptance plays a role, as illustrated by Van Gogh's posthumous fame despite its lifetime poverty (he was able to sell only two paintings). 
+
+Similarly, the discussion extends to music, particularly classical, pondering whether musicians are solely creative or they follow some mathematical rules (at least to some point), which would also go in line that computers are good at creating music, which oftentimes is not recognizable by human music professionals.
+
+Furthermore, it raises questions about the future of mathematicians as the mathematical proofs are becoming so complex that only computers might understand or verify them.
+
+Written in a very fluid and inviting style, the book is an easy ready, where you will be surprised as to how much information you retained after reading. Topics are very well connected. The author presents many pondering questions on creativity vs. value, ethical dilemmas in each domain as well as fear of human insignificance due to the computer being able and in many cases more efficient. However, the author also points the benefits of human and AI collaborative work.
+
+## References
+The banner image for this post was created by OpenAI's DALL-E.
