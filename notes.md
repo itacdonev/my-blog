@@ -14,3 +14,10 @@ title-block-banner: true
 
 https://ivelasq.quarto.pub/building-a-blog-with-quarto/lets-build-a-quarto-blog/#about.qmd-blog-about-page
 https://ivelasq.rbind.io
+
+Environment: 
+
+Once the post is written run the following:
+- adjust toc in `_quarto.yml`
+- `quarto render`
+- `quarto publish gh-pages`
